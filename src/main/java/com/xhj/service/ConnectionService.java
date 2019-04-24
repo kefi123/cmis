@@ -9,9 +9,9 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xhj.entity.Connection;
 import com.xhj.entity.Route;
-import com.xhj.entity.User;
 import com.xhj.mapper.ConnectionMapper;
-import com.xhj.mapper.UserMapper;
+import com.xhj.user.entity.User;
+import com.xhj.user.mapper.UserMapper;
 
 @Service
 public class ConnectionService {

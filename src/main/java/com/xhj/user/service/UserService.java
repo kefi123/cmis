@@ -1,4 +1,4 @@
-package com.xhj.service;
+package com.xhj.user.service;
 
 import java.util.Properties;
 
@@ -13,33 +13,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.xhj.entity.Connection;
-import com.xhj.entity.User;
 import com.xhj.mapper.ConnectionMapper;
-import com.xhj.mapper.UserMapper;
+import com.xhj.service.MailInfo;
+import com.xhj.user.entity.User;
+import com.xhj.user.mapper.UserMapper;
 
 @Service
 public class UserService {
 	@Autowired
 	private UserMapper userMapper;
-	@Autowired
-	private ConnectionMapper connectionMapper;
 
 	// 登录
 	public String login(User user) {
-		User user_x = userMapper.selectUsersByName(user.getUs_name());
+		User user_x = userMapper.selectUsersByName(user.getU_name());
 		if (user_x != null) {
-			if (user.getUs_password().equals(user_x.getUs_password())){
-				if(user.isUs_level()==user_x.isUs_level())
-					return "登录成功";
-				else
-					return "级别不对";
-			}
+			if (user.getU_password().equals(user_x.getU_password()))
+				return "登录成功";
 			else
 				return "密码错误";
 		} else
 			return "用户不存在";
 	}
-
+/*
 	// 注册
 	@Transactional
 	public boolean register(User user) {
@@ -105,5 +100,6 @@ public class UserService {
 		}
 		return true;
 	}
+	*/
 
 }

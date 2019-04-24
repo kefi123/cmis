@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.xhj.entity.User;
-import com.xhj.service.UserService;
+import com.xhj.user.entity.User;
+import com.xhj.user.service.UserService;
 
 @Controller
 public class UserController {
@@ -32,7 +32,7 @@ public class UserController {
 			session.setAttribute("ulogined", user);
 			return "index/index";
 		}
-		return "login/login";
+		return "user/login/login";
 	}
 
 	// 退出登录
@@ -48,6 +48,7 @@ public class UserController {
 		return "login/register";
 	}
 
+	/*
 	// 注册
 	@RequestMapping("/register")
 	public String register(User user, Map<String, Object> map) {
@@ -56,4 +57,5 @@ public class UserController {
 			return "login/login";
 		return "login/register";
 	}
+	*/
 }

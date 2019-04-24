@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xhj.entity.Connection;
 import com.xhj.entity.Route;
-import com.xhj.entity.User;
 import com.xhj.service.ConnectionService;
+import com.xhj.user.entity.User;
 
 //告知springboot这是一个控制器
 @Controller

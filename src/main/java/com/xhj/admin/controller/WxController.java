@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xhj.entity.User;
-import com.xhj.service.UserService;
+import com.xhj.user.entity.User;
+import com.xhj.user.service.UserService;
 
 @RestController
 public class WxController {

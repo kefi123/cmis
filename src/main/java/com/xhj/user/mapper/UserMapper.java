@@ -1,16 +1,16 @@
-package com.xhj.mapper;
+package com.xhj.user.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.xhj.entity.User;
+import com.xhj.user.entity.User;
 
 @Mapper
 public interface UserMapper {
 	// 通过用户名查询用户
-	@Select("select * from `user` where us_name = #{us_name}")
-	User selectUsersByName(String us_name);
+	@Select("select * from `t_user` where u_name = #{u_name}")
+	User selectUsersByName(String u_name);
 
 	// 向数据库中插入一条用户信息
 	@Insert("insert into `user` (us_name,us_password,us_mail,us_authcode,us_level) "
