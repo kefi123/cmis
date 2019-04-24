@@ -1,0 +1,44 @@
+.items{
+    background-color: #ffffff;
+}
+
+.item{
+    border-bottom: 1px solid #eeeeee;
+    margin-top: 25px;
+}
+.item-avatar{
+    width: 70px;
+    height: 70px;
+}
+.username{
+    font-size: 16px;
+    font-weight: 800px;
+    color: #000;
+}
+.userdetail{
+    font-size:12px;
+    font-weight : 100px;
+    color: #A6ABB7;
+}
+.item-detail{
+    margin-left: -30px;
+}
+.dt-img{
+    width: 182px;
+    float:left;
+    margin-left:30px;
+}
+.item-bottom-text{
+    font-size:14px;
+    color: #A6ABB7;
+    margin-left:10px;
+}
+.item-bottom-img{
+    width:19px;
+    height: 18px;
+    float: left;
+}
+.item-bottom{
+    margin-top:15px;
+    margin-bottom: 25px;
+}
