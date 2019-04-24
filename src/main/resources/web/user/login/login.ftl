@@ -43,7 +43,8 @@
 							<button onclick="javascript:$("#logIn").submit();">登录</button>
 						</div>
 						<div class="form_reg_btn">
-							<span>还没有帐号</span><a href="registerFtl">马上注册</a>
+							<span>还没有帐号?</span><a href="registerFtl">马上注册</a>
+							<span>还没有帐号?</span><a href="registerFtl">马上注册</a>
 						</div>
 					</form>
 				</div>
