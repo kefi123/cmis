@@ -16,42 +16,6 @@
 
     <div class="left_menu">
         <ul id="nav_dot">
-            <li>
-                <a style = "text-decoration : none" href = 'began' target = "mainAction" class = "M1">
-                    <h4 class="M1">
-                        <span></span>首页
-                    </h4>
-                </a>
-            </li>
-			<#if ulogined.us_level=false>
-                <li>
-                    <h4 class="M2">
-                        <span></span>特征管理
-                    </h4>
-                    <div class="list-item none">
-                        <a href='addFeature' target="mainAction">添加特征</a>
-                        <a href='getFeature?page=1&size=4' target="mainAction">查询特征</a>
-                    </div>
-                </li>
-                <li>
-                    <h4 class="M2">
-                        <span></span>策略管理
-                    </h4>
-                    <div class="list-item none">
-                        <a href='addStrategyFtl' target="mainAction">添加策略</a>
-                        <a href='getStrategy?page=1&size=4' target="mainAction">查询策略</a>
-                    </div>
-                </li>  
-                <li>
-                    <h4 class="M2">
-                        <span></span>话题管理
-                    </h4>
-                    <div class="list-item none">
-                        <a href='addTopicFtl' target="mainAction">添加话题</a>
-                        <a href='getTopic?page=1&size=4' target="mainAction">查询话题</a>
-                    </div>
-                </li>
-            <#else>
                 <li>
                     <h4 class="M1">
                         <span></span>人脉管理
@@ -90,7 +54,6 @@
                         </h4>
                     </a>
                 </li>
-          </#if>
         </ul>
     </div>
     <script>

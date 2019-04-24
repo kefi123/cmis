@@ -24,16 +24,22 @@ public class UserService {
 	private UserMapper userMapper;
 
 	// 登录
-	public String login(User user) {
+	public User login(User user) {
 		User user_x = userMapper.selectUsersByName(user.getU_name());
 		if (user_x != null) {
 			if (user.getU_password().equals(user_x.getU_password()))
-				return "登录成功";
+				return user_x;
 			else
-				return "密码错误";
+				return null;
 		} else
-			return "用户不存在";
+			return null;
 	}
+	
+	//更新头像信息
+	public boolean updateAvatar(int u_id,String u_avatar){
+		return userMapper.updateAvatar(u_id,u_avatar);
+	}
+	
 /*
 	// 注册
 	@Transactional
