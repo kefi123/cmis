@@ -39,6 +39,10 @@ public class UserService {
 	public boolean updateAvatar(int u_id,String u_avatar){
 		return userMapper.updateAvatar(u_id,u_avatar);
 	}
+	//更新用户信息
+	public boolean updateUser(User user){
+		return userMapper.updateUser(user);
+	}
 	
 /*
 	// 注册
