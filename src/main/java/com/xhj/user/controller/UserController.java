@@ -20,7 +20,7 @@ public class UserController {
 	// 跳转到登录页面
 	@RequestMapping("/loginFtl")
 	public String loginFtl() {
-		return "login/login";
+		return "user/login/login";
 	}
 
 	// 登录
