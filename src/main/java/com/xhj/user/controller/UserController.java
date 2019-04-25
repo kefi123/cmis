@@ -6,10 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xhj.user.entity.Cindustry;
 import com.xhj.user.entity.User;
-import com.xhj.user.mapper.CindustryMapper;
 import com.xhj.user.service.CindustryService;
 import com.xhj.user.service.Parent_industry_service;
 import com.xhj.user.service.UserService;
@@ -88,6 +85,7 @@ public class UserController {
 		User olduser=(User) session.getAttribute("ulogined");
 		olduser.setU_realname(user.getU_realname());
 		olduser.setU_sex(user.isU_sex());
+		olduser.setU_mail(user.getU_mail());
 		olduser.setP_industry_id(user.getP_industry_id());
 		olduser.setC_industry_id(user.getC_industry_id());
 		olduser.setU_company(user.getU_company());
@@ -137,23 +135,23 @@ public class UserController {
 	@RequestMapping("/dlogin")
 	public String dlogin(HttpSession session) {
 		session.removeAttribute("ulogined");
-		return "login/login";
+		return "user/login/login";
 	}
 
 	// 跳转到注册页面
 	@RequestMapping("/registerFtl")
 	public String registerFtl() {
-		return "login/register";
+		return "user/login/register";
 	}
 
-	/*
+	
 	// 注册
-	@RequestMapping("/register")
+	@RequestMapping("/registerUser")
 	public String register(User user, Map<String, Object> map) {
 		boolean result = userService.register(user);
 		if (result == true)
-			return "login/login";
-		return "login/register";
+			return "user/login/login";
+		return "user/login/register";
 	}
-	*/
+	
 }

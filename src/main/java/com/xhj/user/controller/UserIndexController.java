@@ -31,6 +31,7 @@ public class UserIndexController {
 	
 	@RequestMapping("/edit_userinfo")
 	public String edit_userinfo(Map<String, Object> map) {
+		//进入编辑页面时首先获取父类行业名称
 		map.put("pIndustrys",pis.getPIndustrys());
 		return "user/edit_userinfo";
 	}

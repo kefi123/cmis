@@ -19,7 +19,7 @@
                  <img src="${ulogined.u_avatar}"  class="avatar" alt="avatar">
                  <span>${ulogined.u_name} </span>
                  <a href="edit_userinfo" target="mainAction" class="btn btn-default btn-sm" style="margin-left:10px;">编辑资料</a>
-                 <a href="#" class="btn btn-primary btn-sm" style="margin-left:10px;">退出</a>
+                 <a href="dlogin" target="_top" class="btn btn-primary btn-sm" style="margin-left:10px;">退出</a>
             </div>
         </div>
     </div>

@@ -44,19 +44,13 @@ public class UserService {
 		return userMapper.updateUser(user);
 	}
 	
-/*
+
 	// 注册
 	@Transactional
 	public boolean register(User user) {
-		boolean result, result1, result2;
-		result = true;
-		result1 = userMapper.insertUser(user);
-		result2 = estCon(user);
-		if (result1 == false || result2 == false)
-			result = false;
-		return result;
+		return userMapper.insertUser(user);
 	}
-
+/*
 	// 根据邮箱信息爬出相关联的人脉添加到数据库里
 	public boolean estCon(User user) {
 		try {

@@ -20,12 +20,12 @@ public interface UserMapper {
 	boolean updateAvatar(@Param(value = "u_id") int u_id,@Param(value = "u_avatar") String u_avatar);
 	
 	//更新用户信息
-	@Update("update t_user set u_realname=#{u_realname},u_sex=#{u_sex},p_industry_id=#{p_industry_id},c_industry_id=#{c_industry_id},u_company=#{u_company},u_position=#{u_position} where u_id=#{u_id}")
+	@Update("update t_user set u_realname=#{u_realname},u_sex=#{u_sex},u_mail=#{u_mail},p_industry_id=#{p_industry_id},c_industry_id=#{c_industry_id},u_company=#{u_company},u_position=#{u_position} where u_id=#{u_id}")
 	boolean updateUser(User user);
 	
-	// 向数据库中插入一条用户信息
-	@Insert("insert into `user` (us_name,us_password,us_mail,us_authcode,us_level) "
-			+ "values(#{us_name},#{us_password},#{us_mail},#{us_authcode},#{us_level})")
+	// 向数据库中插入一条用户信息(只包括用户名密码)
+	@Insert("insert into `t_user` (u_name,u_password) "
+			+ "values(#{u_name},#{u_password})")
 	boolean insertUser(User user);
 
 	// 通过用户名字查找用户

@@ -27,7 +27,7 @@
                     </div>
                     <button type="submit" class="btn btn-info" style="width: 307px;margin-top: 30px;margin-left: 230px;">登录</button>
                     <div style="margin-top: 50px;" class="col-md-4 col-md-offset-8">
-                        <a href="">还没有账号，快来注册吧！</a>
+                        <a href="registerFtl">还没有账号，快来注册吧！</a>
                     </div>
                 </form>
             </div>
