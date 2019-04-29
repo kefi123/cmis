@@ -9,8 +9,4 @@ public class DateController {
 	public String getDate() {
 		return "other/date";
 	}
-	@RequestMapping("/test")
-	public String test() {
-		return "other/test";
-	}
 }

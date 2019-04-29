@@ -5,15 +5,34 @@
     <title>发现</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/extra.css">
+    <link rel="stylesheet" type="text/css" href="css/webuploader.css">
     <script src="js/jquery-1.12.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/webuploader.js"></script>
 </head>
 <body style="background-color:#f9f9f9;">
     <div class="container excontainer">
+    	<div class="row" style="background-color:#fff;margin-top:50px;border-bottom:1px solid #eeeeee;">
+			<div class="col-md-10 col-md-offset-1">
+				<h4 style="color:#2aabd2;margin-top:20px;">发布动态~</h4>
+    			<form class="form" action="">
+    				<div class="form-group">
+    					<textarea style="height:100px;" class="form-control" placeholder="说你所想..."></textarea>
+    				</div>
+    				<div class="form-group" style="margin-top:30px;">
+						<!--webupload多图片预览上传-->
+						<!--用来存放item-->
+						<div id="fileList" class="uploader-list row"></div>
+					    <div class="row">
+					    	<div id="filePicker" class="col-md-3">选择图片</div>
+    						<button type="submit" class="btn btn-primary col-md-2 col-md-offset-7">发布</button>
+					    </div>
+    				</div>
+    			</form>
+    		</div>
+    	</div>
         <div class="row">
             <div class="col-md-12 items" >
-                <button type="button" class="btn btn-info col-md-2 col-md-offset-5" style="margin-top:30px;margin-bottom:20px;">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;写动态</button>
                 <div class="col-md-12 item">
                     <div class="row">
                         <div class="col-md-2">
@@ -203,5 +222,55 @@
             </div>
         </div>
     </div>
+    
+    <!--WebUpload插件js代码部分-->
+    <script>
+    	// 初始化Web Uploader
+		var uploader = WebUploader.create({
+		
+		    // swf文件路径
+		    swf: 'js/Uploader.swf',
+		
+		    // 文件接收服务端。
+		    server: 'uploadAvatar',
+		
+		    // 选择文件的按钮。可选。
+		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+		    pick: '#filePicker',
+		
+		    // 只允许选择图片文件。
+		    accept: {
+		        title: 'Images',
+		        extensions: 'gif,jpg,jpeg,bmp,png',
+		        mimeTypes: 'image/*'
+		    }
+		});
+		// 文件入队列时触发事件
+		uploader.on( 'fileQueued', function( file ) {
+		    var $li = $(
+		            '<div id="' + file.id + '" class="file-item thumbnail col-md-1">' +
+		                '<img>' +
+		                '<div class="info" style="color:#515151;font-size:12px;">' + file.name + '</div>' +
+		            '</div>'
+		            ),
+		        $img = $li.find('img');
+		
+		
+		    // $list为容器jQuery实例
+		   $("#fileList").append( $li );
+		
+		    // 创建缩略图
+		    // 如果为非图片文件，可以不用调用此方法。
+		    // thumbnailWidth x thumbnailHeight 为 100 x 100
+		    uploader.makeThumb( file, function( error, src ) {
+		        if ( error ) {
+		            $img.replaceWith('<span>不能预览</span>');
+		            return;
+		        }
+		
+		        $img.attr( 'src', src );
+		    }, 60, 60 );
+		});
+    </script>
 </body>
 </html>

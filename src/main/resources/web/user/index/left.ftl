@@ -27,7 +27,7 @@
                 </div>
             </li>
             <li>
-                <a style = "text-decoration : none" href = 'test' target = "mainAction" class = "M1">
+                <a style = "text-decoration : none" href = 'dynamic' target = "mainAction" class = "M1">
                     <h4 class="M1">
                         <span></span>发现
                     </h4>

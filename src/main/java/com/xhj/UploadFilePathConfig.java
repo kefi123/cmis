@@ -9,12 +9,24 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 public class UploadFilePathConfig extends WebMvcConfigurerAdapter {
 
-    @Value("${file.staticAccessPath}")
-    private String staticAccessPath;
-    @Value("${file.uploadFolder}")
-    private String uploadFolder;
+	//头像的静态访问地址
+    @Value("${file.accessAvatarPath}")
+    private String accessAvatarPath;
+    @Value("${file.uploadAvatarPath}")
+    private String uploadAvatarPath;
+    
+    //动态图片的静态访问地址
+    @Value("${file.accessDynamicPicPath}")
+    private String accessDynamicPicPath;
+    @Value("${file.uploadDynamicPicPath}")
+    private String uploadDynamicPicPath;
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(staticAccessPath).addResourceLocations("file:///" + uploadFolder);
+    	
+    	//注册头像访问的虚拟地址
+        registry.addResourceHandler(accessAvatarPath).addResourceLocations("file:///" + uploadAvatarPath);
+        
+        //注册动态图片访问的虚拟地址
+        registry.addResourceHandler(accessDynamicPicPath).addResourceLocations("file:///" + uploadDynamicPicPath);
     }
 }

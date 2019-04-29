@@ -1,10 +1,7 @@
 package com.xhj.user.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +17,7 @@ import com.xhj.user.entity.User;
 import com.xhj.user.service.CindustryService;
 import com.xhj.user.service.Parent_industry_service;
 import com.xhj.user.service.UserService;
+import com.xhj.util.UploadImg;
 
 @Controller
 public class UserController {
@@ -33,45 +31,27 @@ public class UserController {
 	@Autowired
 	CindustryService cis;
 	
-	//上传头像
-	@Value("${file.uploadFolder}")
-    private String uploadFolder;
+	//头像的存储路径
+	@Value("${file.uploadAvatarPath}")
+    private String uploadAvatarPath;
 	
+	//上传头像
 	@RequestMapping("/uploadAvatar")
 	public String uploadAvatar(MultipartFile file,HttpSession session){
 		
-		//得到文件名
-		String fileName=file.getOriginalFilename();
-		//得到文件后缀
-		String suffixName=fileName.substring(fileName.lastIndexOf("."));
-		//重新生成唯一的文件名，存放入数据库
-		String newFileName=UUID.randomUUID().toString()+suffixName;
+		//得到文件的新名字
+		String fileName=UploadImg.uploadPic(file, uploadAvatarPath);
 		
-		File filesss=new File(uploadFolder);
-		if(filesss.exists()==false){
-			filesss.mkdirs();
-		}
-		
-		//创建文件
-		File newFile=new File(uploadFolder+newFileName);
-		
-		//复制文件到指定的地方
-		try {
-			file.transferTo(newFile);
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		} 
-		
-		//虚拟访问地址
-		String vAddress="http://localhost:8080/uploadAvatars/"+newFileName;
+		//生成虚拟访问地址
+		String newFileName="http://localhost:8080/avatars/"+fileName;
 		
 		//更新到该用户的数据库中
 		User user=(User) session.getAttribute("ulogined");
 		
-		userService.updateAvatar(user.getU_id(),vAddress);
+		userService.updateAvatar(user.getU_id(),newFileName);
 		
 		//更新到session里
-		user.setU_avatar(vAddress);
+		user.setU_avatar(newFileName);
 		session.setAttribute("ulogined", user);
 		
 		return "user/edit_userinfo";
