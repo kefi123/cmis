@@ -1,5 +1,7 @@
 package com.xhj.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xhj.user.entity.Dynamic;
+import com.xhj.user.entity.DynamicDisplay;
 import com.xhj.user.entity.DynamicPic;
 import com.xhj.user.entity.User;
 import com.xhj.user.service.DynamicService;
@@ -22,7 +25,11 @@ public class UserDynamicController {
 	DynamicService ds;
 	
 	@RequestMapping("/dynamic")
-	public String dynamic() {
+	public String dynamic(HttpSession session) {
+		
+		List<DynamicDisplay> dds=ds.dynamicDisplay();
+		
+		session.setAttribute("dds", dds);
 		
 		//跳转到动态页面
 		return "user/dynamic/dynamic";

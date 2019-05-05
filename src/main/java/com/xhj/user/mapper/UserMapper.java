@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.xhj.entity.Connection;
 import com.xhj.user.entity.User;
 
 @Mapper
@@ -14,6 +13,10 @@ public interface UserMapper {
 	// 通过用户名查询用户
 	@Select("select * from `t_user` where u_name = #{u_name}")
 	User selectUsersByName(String u_name);
+	
+	// 通过ID查询用户
+	@Select("select * from `t_user` where u_id = #{u_id}")
+	User selectUsersByID(int u_id);
 
 	//更新头像信息
 	@Update("update t_user set u_avatar=#{u_avatar} where u_id=#{u_id}")
