@@ -15,20 +15,17 @@
     	<div class="row" style="background-color:#fff;margin-top:50px;border-bottom:1px solid #eeeeee;">
 			<div class="col-md-10 col-md-offset-1">
 				<h4 style="color:#2aabd2;margin-top:20px;">发布动态~</h4>
-    			<form class="form" action="">
     				<div class="form-group">
-    					<textarea style="height:100px;" class="form-control" placeholder="说你所想..."></textarea>
+    					<textarea id="dynamic_content" name="dynamic_content" style="height:100px;" class="form-control" placeholder="说你所想..."></textarea>
     				</div>
     				<div class="form-group" style="margin-top:30px;">
 						<!--webupload多图片预览上传-->
-						<!--用来存放item-->
-						<div id="fileList" class="uploader-list row"></div>
+						<div id="fileList" name="fileList" class="uploader-list row"></div>
 					    <div class="row">
-					    	<div id="filePicker" class="col-md-3">选择图片</div>
-    						<button type="submit" class="btn btn-primary col-md-2 col-md-offset-7">发布</button>
+					    	<div id="filePicker" class="col-md-3">选择图片(最多:2)</div>
+    						<button id="release" name="release" class="btn btn-primary col-md-2 col-md-offset-7">发布</button>
 					    </div>
     				</div>
-    			</form>
     		</div>
     	</div>
         <div class="row">
@@ -225,29 +222,46 @@
     
     <!--WebUpload插件js代码部分-->
     <script>
-    	// 初始化Web Uploader
-		var uploader = WebUploader.create({
+    	jQuery(function() {
+		    var $ = jQuery,
+		        $list = $('#fileList'),
+		        // 优化retina, 在retina下这个值是2
+		        ratio = window.devicePixelRatio || 1,
+		        // 缩略图大小
+		        thumbnailWidth = 60,
+		        thumbnailHeight = 60,
+		        // Web Uploader实例
+		        uploader;
+		    // 初始化Web Uploader
+		    uploader = WebUploader.create({
+		        // 自动上传。
+		        auto: false,
+		        // swf文件路径
+		        // swf文件路径
+		        swf:  'js/Uploader.swf',
+		        // 文件接收服务端。
+		        server: 'http://localhost:8080/storageDynamicPic',
+		        threads:'5',        //同时运行5个线程传输
+		        fileNumLimit:'2',  //文件总数量只能选择10个，我们只需要一个，所以我选的1
 		
-		    // swf文件路径
-		    swf: 'js/Uploader.swf',
+		        // 选择文件的按钮。可选。
+		        pick: {id:'#filePicker',  //选择文件的按钮
+		            multiple:true},   //允许可以同时选择多个图片
+		        // 图片质量，只有type为`image/jpeg`的时候才有效。
+		        quality: 90,
 		
-		    // 文件接收服务端。
-		    server: 'uploadAvatar',
+		        //限制传输文件类型，accept可以不写
+		        accept: {
+		            title: 'Images',//描述
+		            extensions: 'gif,jpg,jpeg,bmp,png',//类型
+		            mimeTypes: 'image/*'//mime类型
+		        }
+		    });
 		
-		    // 选择文件的按钮。可选。
-		    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-		    pick: '#filePicker',
 		
-		    // 只允许选择图片文件。
-		    accept: {
-		        title: 'Images',
-		        extensions: 'gif,jpg,jpeg,bmp,png',
-		        mimeTypes: 'image/*'
-		    }
-		});
-		// 文件入队列时触发事件
-		uploader.on( 'fileQueued', function( file ) {
-		    var $li = $(
+		    // 当有文件添加进来的时候，创建img显示缩略图使用
+		    uploader.on( 'fileQueued', function( file ) {
+		        var $li = $(
 		            '<div id="' + file.id + '" class="file-item thumbnail col-md-1">' +
 		                '<img>' +
 		                '<div class="info" style="color:#515151;font-size:12px;">' + file.name + '</div>' +
@@ -255,21 +269,42 @@
 		            ),
 		        $img = $li.find('img');
 		
+		        // $list为容器jQuery实例
+		        $list.append( $li );
 		
-		    // $list为容器jQuery实例
-		   $("#fileList").append( $li );
+		        // 创建缩略图
+		        // 如果为非图片文件，可以不用调用此方法。
+		        // thumbnailWidth x thumbnailHeight 为 100 x 100
+		        uploader.makeThumb( file, function( error, src ) {
+		            if ( error ) {
+		                $img.replaceWith('<span>不能预览</span>');
+		                return;
+		            }
 		
-		    // 创建缩略图
-		    // 如果为非图片文件，可以不用调用此方法。
-		    // thumbnailWidth x thumbnailHeight 为 100 x 100
-		    uploader.makeThumb( file, function( error, src ) {
-		        if ( error ) {
-		            $img.replaceWith('<span>不能预览</span>');
-		            return;
-		        }
+		            $img.attr( 'src', src );
+		        }, thumbnailWidth, thumbnailHeight );
+		    });
 		
-		        $img.attr( 'src', src );
-		    }, 60, 60 );
+			//点击发布按钮发布动态内容
+			$("#release").click(function(){
+				
+				//点击发布时获取内容
+				var content=$("#dynamic_content").val();
+				
+			    //通过Ajax把信息传到服务器
+				$.ajax({
+		            url: "storageDynamicContent",
+		            type: "POST",
+		            data: {
+		            	dynamic_content:content
+		            }
+		        });
+		        uploader.upload();   //执行手动提交
+		        
+		        //清空内容
+		        $("#dynamic_content").val("");
+		        $("#fileList").empty();
+			});
 		});
     </script>
 </body>
