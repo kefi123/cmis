@@ -27,6 +27,7 @@ public class UserDynamicController {
 	@RequestMapping("/dynamic")
 	public String dynamic(HttpSession session) {
 		
+		
 		List<DynamicDisplay> dds=ds.dynamicDisplay();
 		
 		session.setAttribute("dds", dds);

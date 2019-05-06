@@ -10,7 +10,9 @@ import com.xhj.user.entity.Dynamic;
 import com.xhj.user.entity.DynamicDisplay;
 import com.xhj.user.entity.DynamicPic;
 import com.xhj.user.entity.User;
+import com.xhj.user.mapper.CindustryMapper;
 import com.xhj.user.mapper.DynamicMapper;
+import com.xhj.user.mapper.Parent_industryMapper;
 import com.xhj.user.mapper.UserMapper;
 
 @Service
@@ -24,6 +26,12 @@ public class DynamicService {
 	//用户Mapper类
 	@Autowired
 	UserMapper um;
+	
+	@Autowired
+	Parent_industryMapper pim;
+	
+	@Autowired
+	CindustryMapper cim;
 	
 	
 	
@@ -75,4 +83,5 @@ public class DynamicService {
 		}
 		return dds;
 	}
+	
 }

@@ -41,7 +41,7 @@
 	                        <div class="col-md-10 item-detail">
 	                            <div class="row">
 	                                <div class="col-md-12">
-	                                    <span class="username">${dd.user.u_realname}</span><span class="userdetail">&nbsp;&nbsp;&nbsp;${dd.user.u_company}${dd.user.u_position}</span>
+	                                    <a href="userDetail?u_id=${dd.user.u_id}"><span class="username">${dd.user.u_realname}</span><span class="userdetail">&nbsp;&nbsp;&nbsp;${dd.user.u_company}${dd.user.u_position}</span></a>
 	                                </div>
 	                            </div>
 	                            <div class="row">

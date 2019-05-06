@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.xhj.user.entity.Cindustry;
 import com.xhj.user.entity.User;
+import com.xhj.user.entity.UserDetailDisplay;
 import com.xhj.user.service.CindustryService;
 import com.xhj.user.service.Parent_industry_service;
 import com.xhj.user.service.UserService;
@@ -132,6 +133,19 @@ public class UserController {
 		if (result == true)
 			return "user/login/login";
 		return "user/login/register";
+	}
+	
+	//用户详情页面的展示
+	@RequestMapping("/userDetail")
+	public String dynamic(int u_id , HttpSession session) {
+		
+		UserDetailDisplay udd=userService.getUserDetail(u_id);
+		
+		session.setAttribute("udd", udd);
+		
+		//跳转到动态页面
+		return "user/userDetail";
+		
 	}
 	
 }

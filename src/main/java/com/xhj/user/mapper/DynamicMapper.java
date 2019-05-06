@@ -27,6 +27,10 @@ public interface DynamicMapper {
 	@Select("select * from t_dynamics")
 	public List<Dynamic> selectAll();
 	
+	//读取某用户的所有动态
+	@Select("select * from t_dynamics where dynamic_user_id = #{dynamic_user_id}")
+	public List<Dynamic> selectByUID(int dynamic_user_id);
+	
 	//根据动态的id从数据库里读出该动态的图片信息
 	@Select("select * from t_dynamic_pictures where dynamic_id = #{dynamic_id}")
 	public List<DynamicPic> selectPic(int dynamic_id);
