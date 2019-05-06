@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.xhj.user.entity.Comment;
 import com.xhj.user.entity.Dynamic;
 import com.xhj.user.entity.DynamicDisplay;
 import com.xhj.user.entity.DynamicPic;
@@ -24,6 +25,34 @@ public class UserDynamicController {
 	@Autowired
 	DynamicService ds;
 	
+	//存储动态的评论
+	@RequestMapping("/storageDynamicComment")
+	public String storageDynamicComment(int dynamic_id,int u_id,String comment_content){
+		
+		Comment cm=new Comment();
+		cm.setDynamic_id(dynamic_id);
+		cm.setComment_user_id(u_id);
+		cm.setComment_content(comment_content);
+		
+		ds.storageDynamicComment(cm);
+		
+		return "dynamicDetail?dynamic_id="+dynamic_id;
+	}
+	
+	//跳转到动态详情页面
+	@RequestMapping("/dynamicDetail")
+	public String dynamicDetail(int dynamic_id,HttpSession session) {
+		
+		DynamicDisplay dd=ds.dynamicDetail(dynamic_id);
+		
+		session.setAttribute("dd", dd);
+		
+		//跳转到动态页面
+		return "user/dynamic/dynamicDetail";
+		
+	}
+	
+	//跳转到动态页面
 	@RequestMapping("/dynamic")
 	public String dynamic(HttpSession session) {
 		

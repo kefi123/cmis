@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xhj.user.entity.Comment;
+import com.xhj.user.entity.CommentDisplay;
 import com.xhj.user.entity.Dynamic;
 import com.xhj.user.entity.DynamicDisplay;
 import com.xhj.user.entity.DynamicPic;
@@ -46,6 +48,51 @@ public class DynamicService {
 	public boolean storageDynamicPic(DynamicPic dynamicPic){
 		dm.insertPic(dynamicPic);
 		return true;
+	}
+	
+	//将动态评论放入数据库
+	public boolean storageDynamicComment(Comment comment){
+		dm.insertComment(comment);
+		return true;
+	}
+	
+	//整合单个动态的完整信息（包括评论）
+	public DynamicDisplay dynamicDetail(int dynamic_id){
+		
+		//常见一个展示动态的对象
+		DynamicDisplay dd=new DynamicDisplay();
+		
+		//首先获取动态信息
+		Dynamic dynamic=dm.selectSingleByDID(dynamic_id);
+		
+		//设置动态信息
+		dd.setDynamic(dynamic);
+		
+		//读取用户信息并且设置
+		User user=um.selectUsersByID(dynamic.getDynamic_user_id());
+		dd.setUser(user);
+		
+		//读取动态图片信息并设置
+		List<DynamicPic> pics=dm.selectPic(dynamic.getDynamic_id());
+		dd.setDynamicPic(pics);
+		
+		//设置评论信息
+		List<Comment> cmts=dm.selectComment(dynamic.getDynamic_id());
+
+		List<CommentDisplay> cds=new ArrayList<CommentDisplay>();
+		
+		CommentDisplay cd;
+		
+		for(Comment cm : cmts){
+			cd=new CommentDisplay();
+			cd.setComment(cm);
+			cd.setUser(um.selectUsersByID(cm.getComment_user_id()));
+			cds.add(cd);
+		}
+		
+		dd.setCds(cds);
+		
+		return dd;
 	}
 	
 	//整合前台展示的动态信息

@@ -12,7 +12,7 @@
 </head>
 <body style="background-color:#f9f9f9;">
     <div class="container excontainer">
-    	<div class="row" style="background-color:#fff;margin-top:50px;border-bottom:1px solid #eeeeee;">
+    	<div class="row" style="background-color:#fff;border-bottom:1px solid #eeeeee;">
 			<div class="col-md-10 col-md-offset-1">
 				<h4 style="color:#2aabd2;margin-top:20px;">发布动态（发完刷新一下）~</h4>
     				<div class="form-group">
@@ -51,7 +51,7 @@
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-md-12">
-	                                    <p>${dd.dynamic.dynamic_content}</p>
+	                                    <a href="dynamicDetail?dynamic_id=${dd.dynamic.dynamic_id}"><p>${dd.dynamic.dynamic_content}</p></a>
 	
 	                                </div>
 	                            </div>

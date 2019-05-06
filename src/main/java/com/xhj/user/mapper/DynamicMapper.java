@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
+import com.xhj.user.entity.Comment;
 import com.xhj.user.entity.Dynamic;
 import com.xhj.user.entity.DynamicPic;
 
@@ -31,8 +32,20 @@ public interface DynamicMapper {
 	@Select("select * from t_dynamics where dynamic_user_id = #{dynamic_user_id}")
 	public List<Dynamic> selectByUID(int dynamic_user_id);
 	
+	//根据动态id读取该动态信息
+	@Select("select * from t_dynamics where dynamic_id = #{dynamic_id}")
+	public Dynamic selectSingleByDID(int dynamic_id);
+	
 	//根据动态的id从数据库里读出该动态的图片信息
 	@Select("select * from t_dynamic_pictures where dynamic_id = #{dynamic_id}")
 	public List<DynamicPic> selectPic(int dynamic_id);
+	
+	//读取动态所有的评论信息
+	@Select("select * from t_comment where dynamic_id = #{dynamic_id}")
+	public List<Comment> selectComment(int dynamic_id);
+	
+	//写入评论
+	@Insert("insert into t_comment (dynamic_id,comment_user_id,comment_content) values (#{dynamic_id},#{comment_user_id},#{comment_content})")
+	public int insertComment(Comment comment);
 	
 }
