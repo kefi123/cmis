@@ -34,4 +34,6 @@ public interface UserMapper {
 	// 通过用户名字查找用户
 	@Select("select * from `user` where us_nickname = #{us_nickname}")
 	User sUByNickName(String us_nickname);
+	
+	
 }

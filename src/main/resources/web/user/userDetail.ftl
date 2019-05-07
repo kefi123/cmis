@@ -25,7 +25,7 @@
                         <br>
                     </div>
                     <div class="col-md-2 col-md-offset-5" style="margin-top: 80px;">
-                        <a href="#" class="btn btn-info">+加为好友</a>
+                        <a href="addFriend?senduser_id=${ulogined.u_id}&receiveuser_id=${udd.user.u_id}" class="btn btn-info">+加为好友</a>
                     </div>
                 </div>
 

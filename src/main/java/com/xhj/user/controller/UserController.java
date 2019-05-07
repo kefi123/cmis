@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xhj.user.entity.Cindustry;
+import com.xhj.user.entity.Notice;
+import com.xhj.user.entity.NoticeDisplay;
+import com.xhj.user.entity.Relation;
 import com.xhj.user.entity.User;
 import com.xhj.user.entity.UserDetailDisplay;
 import com.xhj.user.service.CindustryService;
+import com.xhj.user.service.NoticeService;
 import com.xhj.user.service.Parent_industry_service;
+import com.xhj.user.service.RelationService;
 import com.xhj.user.service.UserService;
 import com.xhj.util.UploadImg;
 
@@ -31,6 +36,70 @@ public class UserController {
 
 	@Autowired
 	CindustryService cis;
+	
+	@Autowired
+	NoticeService ns;
+	
+	@Autowired
+	RelationService rs;
+	
+	//查看当前用户的所有通知
+	@RequestMapping("/notice")
+	public String notice(HttpSession session){
+		
+		//获取当前用户
+		User user=(User) session.getAttribute("ulogined");
+		
+		List<NoticeDisplay> nds=ns.getNotices(user.getU_id());
+		
+		//存入session中
+		session.setAttribute("nds", nds);
+		
+		return "user/notice";
+	}
+	
+	//更改通知的状态
+	@RequestMapping("/updateNoticeStatus")
+	public String updateNoticeStatus(int notice_id,int status,int senduser_id,int receiveuser_id){
+		
+		Notice notice =new Notice();
+		notice.setNotice_id(notice_id);
+		notice.setStatus(status);
+		
+		Relation relation=new Relation();
+		relation.setUser_id1(senduser_id);
+		relation.setUser_id2(receiveuser_id);
+		
+		if(status==1){
+			//同意申请好友
+			//首先更改状态，然后添加好友信息
+			ns.updateNotice(notice);
+			
+			rs.insertRelation(relation);
+		}
+		
+		else if(status==2){
+			//更改状态
+			ns.updateNotice(notice);
+		}
+		
+		return "notice";
+	}
+	
+	//加好友
+	@RequestMapping("/addFriend")
+	public String addFriend(int senduser_id,int receiveuser_id){
+		
+		//分装通知
+		Notice notice=new Notice();
+		notice.setSenduser_id(senduser_id);
+		notice.setReceiveuser_id(receiveuser_id);
+		
+		ns.addNotice(notice);
+		
+		return "userDetail?u_id="+receiveuser_id;
+	}
+	
 	
 	//头像的存储路径
 	@Value("${file.uploadAvatarPath}")

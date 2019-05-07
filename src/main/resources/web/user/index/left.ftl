@@ -27,6 +27,13 @@
                 </div>
             </li>
             <li>
+                <a style = "text-decoration : none" href = 'notice' target = "mainAction" class = "M1">
+                    <h4 class="M1">
+                        <span></span>通知
+                    </h4>
+                </a>
+            </li>
+            <li>
                 <a style = "text-decoration : none" href = 'dynamic' target = "mainAction" class = "M1">
                     <h4 class="M1">
                         <span></span>发现
