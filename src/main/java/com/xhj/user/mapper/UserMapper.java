@@ -1,5 +1,7 @@
 package com.xhj.user.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -16,7 +18,7 @@ public interface UserMapper {
 	
 	// 通过ID查询用户
 	@Select("select * from `t_user` where u_id = #{u_id}")
-	User selectUsersByID(int u_id);
+	User selectUserByID(int u_id);
 
 	//更新头像信息
 	@Update("update t_user set u_avatar=#{u_avatar} where u_id=#{u_id}")
@@ -35,5 +37,7 @@ public interface UserMapper {
 	@Select("select * from `user` where us_nickname = #{us_nickname}")
 	User sUByNickName(String us_nickname);
 	
-	
+	//查询所有用户的id
+	@Select("select u_id from `t_user`")
+	public List<Integer> getAllID();
 }

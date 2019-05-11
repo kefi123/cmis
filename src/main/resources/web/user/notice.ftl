@@ -12,7 +12,7 @@
     <div class="container-fluid" style="background-color: #f9f9f9">
     	<#list nds as nd>
 	        <div class="row">
-	            <div class="col-md-10 col-md-offset-1" style="background-color: #fff;margin-top: 50px;margin-bottom : 50px;height: 80px;box-shadow: #3c3c3c;border-radius: 5px;">
+	            <div class="col-md-10 col-md-offset-1" style="background-color: #fff;margin-top: 20px;margin-bottom : 5px;height: 80px;box-shadow: #3c3c3c;border-radius: 5px;">
 	                <div class="row">
 	                    <span class="col-md-1" style="font-size: 18px;margin-top: 30px;color: #2aabd2;">通知:</span>
 	                    <div class="col-md-1 col-md-offset-1" style="margin-top: 15px;">

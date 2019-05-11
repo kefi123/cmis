@@ -69,7 +69,7 @@ public class DynamicService {
 		dd.setDynamic(dynamic);
 		
 		//读取用户信息并且设置
-		User user=um.selectUsersByID(dynamic.getDynamic_user_id());
+		User user=um.selectUserByID(dynamic.getDynamic_user_id());
 		dd.setUser(user);
 		
 		//读取动态图片信息并设置
@@ -86,7 +86,7 @@ public class DynamicService {
 		for(Comment cm : cmts){
 			cd=new CommentDisplay();
 			cd.setComment(cm);
-			cd.setUser(um.selectUsersByID(cm.getComment_user_id()));
+			cd.setUser(um.selectUserByID(cm.getComment_user_id()));
 			cds.add(cd);
 		}
 		
@@ -119,7 +119,7 @@ public class DynamicService {
 			dd.setDynamic(dynamic);
 			
 			//读取用户信息并且设置
-			user=um.selectUsersByID(dynamic.getDynamic_user_id());
+			user=um.selectUserByID(dynamic.getDynamic_user_id());
 			dd.setUser(user);
 			
 			//读取动态图片信息并设置

@@ -39,7 +39,7 @@ public class NoticeService {
 		for(Notice notice : notices){
 			nd=new NoticeDisplay();
 			nd.setNotice(notice);
-			nd.setUser(um.selectUsersByID(notice.getSenduser_id()));
+			nd.setUser(um.selectUserByID(notice.getSenduser_id()));
 			nds.add(nd);
 		}
 		return nds;

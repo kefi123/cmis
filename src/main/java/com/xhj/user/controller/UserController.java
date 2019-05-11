@@ -16,6 +16,7 @@ import com.xhj.user.entity.Cindustry;
 import com.xhj.user.entity.Notice;
 import com.xhj.user.entity.NoticeDisplay;
 import com.xhj.user.entity.Relation;
+import com.xhj.user.entity.Score;
 import com.xhj.user.entity.User;
 import com.xhj.user.entity.UserDetailDisplay;
 import com.xhj.user.service.CindustryService;
@@ -42,6 +43,35 @@ public class UserController {
 	
 	@Autowired
 	RelationService rs;
+	
+	//好友推荐
+	@RequestMapping("/recommendFriend")
+	public String recommendFriend(HttpSession session){
+
+		//先获取当前用户的id
+		User user=(User) session.getAttribute("ulogined");
+		
+		//获取推荐好友列表
+		List<Score> scores=rs.recommendFriends(user.getU_id());
+		
+		session.setAttribute("scores", scores);
+		
+		return "user/recommendFriend";
+	}
+	
+	//调转到我的好友页面
+	@RequestMapping("/myFriends")
+	public String myFriends(HttpSession session){
+		//先获取当前用户的id
+		User user=(User) session.getAttribute("ulogined");
+		
+		//获取好友列表
+		List<User> users=rs.getFriends(user.getU_id());
+		
+		//存入session
+		session.setAttribute("users", users);
+		return "user/friendList";
+	}
 	
 	//查看当前用户的所有通知
 	@RequestMapping("/notice")

@@ -41,6 +41,20 @@
                 </a>
             </li>
             <li>
+                <a style = "text-decoration : none" href = 'myFriends' target = "mainAction" class = "M1">
+                    <h4 class="M1">
+                        <span></span>我的好友
+                    </h4>
+                </a>
+            </li>
+            <li>
+                <a style = "text-decoration : none" href = 'recommendFriend' target = "mainAction" class = "M1">
+                    <h4 class="M1">
+                        <span></span>智能推荐
+                    </h4>
+                </a>
+            </li>
+            <li>
                 <a style = "text-decoration : none" href = 'conGraph2' target = "mainAction" class = "M1">
                     <h4 class="M1">
                         <span></span>人脉关系网

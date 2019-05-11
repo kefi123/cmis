@@ -52,7 +52,7 @@ public class UserService {
 			UserDetailDisplay udd=new UserDetailDisplay();
 			
 			//获取用户信息
-			User user=um.selectUsersByID(u_id);
+			User user=um.selectUserByID(u_id);
 			
 			//获取行业信息
 			Parent_industry parent_industry=pim.select_parent_industry(user.getP_industry_id());
