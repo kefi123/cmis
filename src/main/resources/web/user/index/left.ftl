@@ -55,25 +55,14 @@
                 </a>
             </li>
             <li>
-                <a style = "text-decoration : none" href = 'conGraph2' target = "mainAction" class = "M1">
-                    <h4 class="M1">
-                        <span></span>人脉关系网
-                    </h4>
-                </a>
-            </li>
-            <li>
-                <a style = "text-decoration : none" href = 'getDate' target = "mainAction" class = "M1">
-                    <h4 class="M1">
-                        <span></span>日程管理
-                    </h4>
-                </a>
-            </li>
-            <li>
-                <a style = "text-decoration : none" href = '#' target = "" class = "M1">
-                    <h4 class="M1">
-                        <span></span>更新人脉信息
-                    </h4>
-                </a>
+                <h4 class="M1">
+                    <span></span>我的邮箱
+                </h4>
+                <div class="list-item none">
+                    <a href='getMailFriends' target="mainAction">导入邮箱好友</a>
+                    <a href='getMf' target="mainAction">我的邮箱好友</a>
+                    <a href='toMFGraph' target="mainAction">查看联络图</a>
+                </div>
             </li>
         </ul>
     </div>

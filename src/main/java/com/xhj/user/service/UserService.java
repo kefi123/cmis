@@ -2,21 +2,12 @@ package com.xhj.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-import javax.mail.Folder;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Store;
-import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xhj.entity.Connection;
-import com.xhj.mapper.ConnectionMapper;
-import com.xhj.service.MailInfo;
 import com.xhj.user.entity.Cindustry;
 import com.xhj.user.entity.Dynamic;
 import com.xhj.user.entity.DynamicDisplay;
@@ -123,60 +114,5 @@ public class UserService {
 	public boolean register(User user) {
 		return um.insertUser(user);
 	}
-/*
-	// 根据邮箱信息爬出相关联的人脉添加到数据库里
-	public boolean estCon(User user) {
-		try {
-			String host = "pop.qq.com";
-
-			Properties p = new Properties();
-			p.setProperty("mail.pop3.host", "pop.qq.com"); // 按需要更改
-			p.setProperty("mail.pop3.port", "995");
-			// SSL安全连接参数
-			p.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-			p.setProperty("mail.pop3.socketFactory.fallback", "true");
-			p.setProperty("mail.pop3.socketFactory.port", "995");
-
-			Session session = Session.getDefaultInstance(p, null);
-			Store store = session.getStore("pop3");
-			store.connect(host, user.getUs_mail(), user.getUs_authcode());
-
-			Folder folder = store.getFolder("INBOX");
-			folder.open(Folder.READ_ONLY);
-			Message message[] = folder.getMessages();
-			MailInfo re = null;
-			Connection con = null;
-			if (null != message) {
-				for (int i = 0; i < message.length; i++) {
-					re = new MailInfo((MimeMessage) message[i]);
-					con = new Connection();
-					con.setCo_us_name(user.getUs_name());
-					String fromAdd = re.getFrom();
-					con.setCo_name(fromAdd.substring(0, fromAdd.indexOf("<")));
-					con.setCo_mail(fromAdd.substring(fromAdd.indexOf("<") + 1, fromAdd.indexOf(">")));
-					//初始为1(刚添加的时候都为1)
-					con.setCo_num(1);
-					// 添加之前先确定数据库里有没有相同名字或者邮箱的人脉信息，有的话返回false，没有的话添加
-					Connection con1 = connectionMapper.aselectConByName(con.getCo_name());
-					Connection con2 = connectionMapper.selectConnectionsByMail(con.getCo_mail());
-					
-					if(con1!=null)
-						connectionMapper.updateConNum(con1.getCo_id());
-					else{
-						if(con2!=null){
-							connectionMapper.updateConNum(con2.getCo_id());
-						}
-						else{
-							connectionMapper.addConnection(con);
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return true;
-	}
-	*/
 
 }
