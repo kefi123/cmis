@@ -35,7 +35,17 @@ public class DynamicService {
 	@Autowired
 	CindustryMapper cim;
 	
+	//点赞
+	public boolean like(int dynamic_id){
+		dm.addLikeNum(dynamic_id);
+		return true;
+	}
 	
+	//取消点赞
+	public boolean unLike(int dynamic_id){
+		dm.deleteLikeNum(dynamic_id);
+		return true;
+	}
 	
 	//调用方法把动态内容写入数据库并且获得插入记录的id
 	public int storageDynamic(Dynamic dynamic){
@@ -50,9 +60,10 @@ public class DynamicService {
 		return true;
 	}
 	
-	//将动态评论放入数据库
+	//将动态评论放入数据库,并且增加该动态评论的数量
 	public boolean storageDynamicComment(Comment comment){
 		dm.insertComment(comment);
+		dm.updateDynamicCommentNum(comment.getDynamic_id());
 		return true;
 	}
 	
@@ -111,6 +122,7 @@ public class DynamicService {
 		
 		//首先获取所有的动态信息
 		List<Dynamic> dynamics=dm.selectAll();
+		
 		for(Dynamic dynamic:dynamics){
 			//获取空间
 			dd=new DynamicDisplay();

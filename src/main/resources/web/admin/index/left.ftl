@@ -16,44 +16,32 @@
 
     <div class="left_menu">
         <ul id="nav_dot">
-                <li>
-                    <h4 class="M1">
-                        <span></span>人脉管理
-                    </h4>
-                    <div class="list-item none">
-                        <a href='addConnectionFtl' target="mainAction">添加人脉</a>
-                        <a href='getConnection?page=1&size=4' target="mainAction">查询人脉</a>
-                        <a href='exConFtl' target="mainAction">拓展人脉</a>
-                    </div>
-                </li>
-                <li>
-                    <a style = "text-decoration : none" href = 'test' target = "mainAction" class = "M1">
-                        <h4 class="M1">
-                            <span></span>发现
-                        </h4>
-                    </a>
-                </li>
-                <li>
-                    <a style = "text-decoration : none" href = 'conGraph2' target = "mainAction" class = "M1">
-                        <h4 class="M1">
-                            <span></span>人脉关系网
-                        </h4>
-                    </a>
-                </li>
-                <li>
-                    <a style = "text-decoration : none" href = 'getDate' target = "mainAction" class = "M1">
-                        <h4 class="M1">
-                            <span></span>日程管理
-                        </h4>
-                    </a>
-                </li>
-                <li>
-                    <a style = "text-decoration : none" href = '#' target = "" class = "M1">
-                        <h4 class="M1">
-                            <span></span>更新人脉信息
-                        </h4>
-                    </a>
-                </li>
+        	<li>
+                <h4 class="M1">
+                    <span></span>一级行业信息管理
+                </h4>
+                <div class="list-item none">
+                    <a href='addPIndustryFtl' target="mainAction">添加一级行业信息</a>
+                    <a href='getPIndustry?page=1&size=4' target="mainAction">查询一级行业信息</a>
+                </div>
+            </li>
+            <li>
+                <h4 class="M1">
+                    <span></span>二级行业信息管理
+                </h4>
+                <div class="list-item none">
+                    <a href='addCIndustryFtl' target="mainAction">添加二级行业信息</a>
+                    <a href='getCIndustry?page=1&size=4' target="mainAction">查询二级行业信息</a>
+                </div>
+            </li>
+            <li>
+                <h4 class="M1">
+                    <span></span>用户管理
+                </h4>
+                <div class="list-item none">
+                    <a href='getUsers?page=1&size=4' target="mainAction">查询用户信息</a>
+                </div>
+            </li>
         </ul>
     </div>
     <script>

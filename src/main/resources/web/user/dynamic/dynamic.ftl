@@ -64,16 +64,12 @@
 	                            </div>
 	                            <div class="row item-bottom">
 	                                <div class="col-md-2">
-	                                    <img src="images2/like_icon.png" class="img-responsive item-bottom-img" />
-	                                    <span class="item-bottom-text">${dd.dynamic.like_number}</span>
+	                                    <img id="like_${dd.dynamic.dynamic_id}" onclick="like(this,'like_num_${dd.dynamic.dynamic_id}',${dd.dynamic.like_number})" src="images/like_icon.png" class="img-responsive item-bottom-img" />
+	                                    <span id="like_num_${dd.dynamic.dynamic_id}" class="item-bottom-text">${dd.dynamic.like_number}</span>
 	                                </div>
 	                                <div class="col-md-2 col-md-offset-3">
-	                                    <img src="images2/comment_icon.png" class="img-responsive item-bottom-img" />
+	                                    <img src="images/comment_icon.png" class="img-responsive item-bottom-img" />
 	                                    <span class="item-bottom-text">${dd.dynamic.comment_number}</span>
-	                                </div>
-	                                <div class="col-md-2 col-md-offset-3">
-	                                    <img src="images2/share_icon.png" class="img-responsive item-bottom-img" />
-	                                    <span class="item-bottom-text">${dd.dynamic.forward_number}</span>
 	                                </div>
 	                            </div>
 	                        </div>
@@ -176,6 +172,38 @@
 		        
 			});
 		});
+		
+		function like(event,id,num){
+			var src=event.src;
+			if(src=="http://localhost:8080/images/like_icon.png"){
+				event.src="images/my_like_icon.png";
+				//通过Ajax把信息传到服务器
+				$.ajax({
+		            url: "like",
+		            type: "POST",
+		            data: {
+		            	dynamic_id:event.id
+		            },
+		            success:function(data){
+		            	$("#"+id).html(num+1);
+		            }
+		        });
+			}
+			else{
+				event.src="images/like_icon.png";
+				//通过Ajax把信息传到服务器
+				$.ajax({
+		            url: "unlike",
+		            type: "POST",
+		            data: {
+		            	dynamic_id:event.id
+		            },
+		            success:function(data){
+		            	$("#"+id).html(num);
+		            }
+		        });
+			}
+		};
     </script>
 </body>
 </html>

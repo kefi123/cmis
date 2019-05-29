@@ -17,16 +17,6 @@
     <div class="left_menu">
         <ul id="nav_dot">
             <li>
-                <h4 class="M1">
-                    <span></span>人脉管理
-                </h4>
-                <div class="list-item none">
-                    <a href='addConnectionFtl' target="mainAction">添加人脉</a>
-                    <a href='getConnection?page=1&size=4' target="mainAction">查询人脉</a>
-                    <a href='exConFtl' target="mainAction">拓展人脉</a>
-                </div>
-            </li>
-            <li>
                 <a style = "text-decoration : none" href = 'notice' target = "mainAction" class = "M1">
                     <h4 class="M1">
                         <span></span>通知

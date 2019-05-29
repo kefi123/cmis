@@ -1,4 +1,4 @@
-package com.xhj.mapper;
+package com.xhj.admin.mapper;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.xhj.entity.Strategy;
+import com.xhj.admin.entity.Strategy;
 
 @Mapper
 public interface StrategyMapper {

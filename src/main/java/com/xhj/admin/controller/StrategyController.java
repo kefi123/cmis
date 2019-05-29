@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.xhj.entity.Strategy;
-import com.xhj.service.StrategyService;
+import com.xhj.admin.entity.Strategy;
+import com.xhj.admin.service.StrategyService;
 
 @Controller
 public class StrategyController {

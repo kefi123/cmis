@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xhj.user.entity.Comment;
@@ -24,6 +25,30 @@ public class UserDynamicController {
 	//获取service
 	@Autowired
 	DynamicService ds;
+	
+	//点赞
+	@ResponseBody
+	@RequestMapping("/like")
+	public String like(String dynamic_id){
+		
+		int id=Integer.parseInt(dynamic_id.substring(dynamic_id.indexOf("_")+1));
+		
+		ds.like(id);
+		
+		return "success";
+	}
+	
+	//取消点赞
+	@ResponseBody
+	@RequestMapping("/unlike")
+	public String unlike(String dynamic_id){
+		
+		int id=Integer.parseInt(dynamic_id.substring(dynamic_id.indexOf("_")+1));
+		
+		ds.unLike(id);
+		
+		return "success";
+	}
 	
 	//存储动态的评论
 	@RequestMapping("/storageDynamicComment")

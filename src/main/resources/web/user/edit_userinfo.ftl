@@ -177,20 +177,14 @@
     <script>
     	$(document).ready(
 		    function(){
-		        $("#editBtn").click(
-		            function () {
-		                $("#display").hide();
-		                $("#edit").show();
-		                <#if ulogined.p_industry_id??>
-			                $("#p_industry_id").val("${ulogined.p_industry_id}");
-			                getchilds();
-		               	</#if>
-		               	<#if ulogined.c_industry_id??>
-			                //$("#c_industry_id").val("${ulogined.c_industry_id}");
-			                //$("#c_industry_id").find("option[value=${ulogined.c_industry_id}]").attr("selected",true);
-		               	</#if>
-		            }
-		        );
+		        $("#editBtn").click(function () {
+	                $("#display").hide();
+	                $("#edit").show();
+	                <#if ulogined.p_industry_id??>
+		                $("#p_industry_id").val("${ulogined.p_industry_id}");
+		                getchilds();
+	               	</#if>
+		        });
 		        $("#cancelBtn").click(
 		            function () {
 		                $("#display").show();
@@ -204,7 +198,6 @@
 		function getchilds() {
 		    //获取第一个下拉列表的值
 		    var pid=$("#p_industry_id").val();
-		    //获取第二个下拉列表对象
 		    var obj=document.getElementById("c_industry_id");
 		    obj.options.length=1;//第一个下拉列表不管选哪个，第二个下拉列表都应该首先显示第一个
 		    if (pid!=null){
@@ -216,8 +209,10 @@
 		            dataType : 'json',
 		            success : function(data) {
 		                $.each(data,function(i,item) {
-		                    //obj.options.add(new Option(item.c_industry_name,item.c_industry_id));
-		                    $("#c_industry_id").append("<option value='"+item.c_industry_id+"'>"+item.c_industry_name+"</option>");
+		                    if(item.c_industry_id==${ulogined.c_industry_id})
+		                    	$("#c_industry_id").append("<option selected = 'selected' value='"+item.c_industry_id+"'>"+item.c_industry_name+"</option>");
+		                    else
+		                    	$("#c_industry_id").append("<option value='"+item.c_industry_id+"'>"+item.c_industry_name+"</option>");
 		                });
 		            }
 		        });

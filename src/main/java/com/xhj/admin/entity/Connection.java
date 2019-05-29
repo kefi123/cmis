@@ -1,4 +1,4 @@
-package com.xhj.entity;
+package com.xhj.admin.entity;
 
 import lombok.Data;
 

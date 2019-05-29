@@ -20,14 +20,6 @@
         var myChart = echarts.init(dom);
         //配置选项
         myChart.setOption({
-            //设置图表的背景色
-            backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
-                offset: 0,
-                color: '#f7f8fa'
-            }, {
-                offset: 1,
-                color: '#cdd0d5'
-            }]),
             //设置标题
             title: {
                 text: "邮箱好友联系图",

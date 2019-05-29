@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>人脉管理系统</title>
+<title>后台管理系统</title>
 
 </head>
-<frameset frameborder="no" rows="82px, *">
-    <frame src="head">
+<frameset frameborder="no" rows="96px, *">
+    <frame src="admin_head">
 	<frameset  cols="285px, *">
-		<frame src="left">
-		<frame src = "began" name="mainAction">
+		<frame src="admin_left">
+		<frame name="mainAction">
 	</frameset>
 </frameset>
 </html>                                                                                                                                                                                            

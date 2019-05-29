@@ -1,4 +1,4 @@
-package com.xhj.service;
+package com.xhj.admin.service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xhj.entity.Strategy;
-import com.xhj.mapper.StrategyMapper;
+import com.xhj.admin.entity.Strategy;
+import com.xhj.admin.mapper.StrategyMapper;
 
 @Service
 public class StrategyService {

@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<packaging>jar</packaging>   <!--  用jar方式打包  -->
 	<groupId>com.xhj</groupId>
 	<artifactId>cmis1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -14,6 +15,13 @@
 
 	<!-- 整合了springmvc-web的部分 -->
 	<dependencies>
+		<!-- 热部署 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+			<scope>true</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -55,14 +63,6 @@
 			<version>3.7</version><!--$NO-MVN-MAN-VER$ -->
 		</dependency>
 
-		<!-- 热部署 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-			<scope>true</scope>
-		</dependency>
-
 		<!-- 读取邮箱 -->
 		<dependency>
 			<groupId>com.sun.mail</groupId>
@@ -74,4 +74,35 @@
 			<version>1.8.3</version>
 		</dependency>
 	</dependencies>
+	<build>
+        <plugins>
+            <!--  添加的  -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <!-- 我运行这个jar所运行的主类 -->
+                            <mainClass>com.xhj.Start</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>
+                            <!-- 必须是这样写 -->
+                            jar-with-dependencies
+                        </descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
+             <fork>true</fork><!-- 如果没有该项配置，可能devtools不会起作用 -->
+           </configuration>
+         </plugin>
+        </plugins>
+    </build>
 </project>

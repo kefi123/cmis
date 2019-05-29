@@ -14,7 +14,6 @@ public class Score {
     private int B;
     //用户B的基本信息
     private UserDetailDisplay udd;
-    
     //没加权重的得分
     private float score;
     //对每个共同好友加权重的得分

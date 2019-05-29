@@ -44,6 +44,22 @@ public class UserController {
 	@Autowired
 	RelationService rs;
 	
+	// 删除用户信息
+	@RequestMapping("/deleteUser")
+	public String deleteUser(int u_id, Map<String, Object> map) {
+		map.put("status",userService.deleteUser(u_id));
+		return "getUsers?page=1&size=4";
+	}
+	
+	// 查询所有一级行业信息
+	@RequestMapping("/getUsers")
+	public String getUsers(int page, int size, Map<String, Object> map) {
+		map.put("pageInfos", userService.getUsers(page, size));
+		map.put("hrefs", "getUsers");
+		return "admin/user/find";
+
+	}
+	
 	//好友推荐
 	@RequestMapping("/recommendFriend")
 	public String recommendFriend(HttpSession session){

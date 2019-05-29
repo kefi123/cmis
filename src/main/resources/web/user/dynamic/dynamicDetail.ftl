@@ -63,7 +63,7 @@
 	                        <a href="#">回复</a>
 	                    </div>
 	                    <div class="col-md-1">
-	                        <img class="img-responsive item-bottom-img" src="images2/like_icon.png"  alt="">
+	                        <img class="img-responsive item-bottom-img" src="images/like_icon.png"  alt="">
 	                        <span>${cd.comment.comment_like_number!}</span>
 	                    </div>
 	                </div>
